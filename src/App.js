@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Product from './Pages/Product';
-import Home from './Pages/Home';
 import { extendTheme } from '@chakra-ui/react';
 import '@fontsource/poppins';
+import Home from './Pages/Home';
+import PaymentComponent from './Pages/Payments';
 
 
 
@@ -20,6 +21,8 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/product" component={Product} />
+        <Route path="/payments" component={PaymentComponent} />
+
       </Switch>
     </Router>
   );
