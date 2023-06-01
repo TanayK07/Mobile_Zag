@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Product from './Pages/Product';
 import Home from './Pages/Home';
+import { extendTheme } from '@chakra-ui/react';
 import '@fontsource/poppins';
 
 
