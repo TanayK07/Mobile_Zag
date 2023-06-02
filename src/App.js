@@ -1,17 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Product from './Pages/Product';
-import { extendTheme } from '@chakra-ui/react';
 import Home from './Pages/Home';
 import './styles.css';
 import PaymentComponent from './Pages/Payments';
 
-const theme = extendTheme({
-  fonts: {
-    body: 'Poppins, sans-serif',
-    heading: 'PoppinsSemi-Bold, sans-serif',
-  },
-});
 
 const App = () => {
   return (

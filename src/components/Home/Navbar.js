@@ -11,10 +11,10 @@ const Navbar = () => {
       padding="1rem"
     >
       <Box>
-        <Image src="menu.png" alt="Left Image" w={50} />
+        <Image src="/menu.png" alt="Left Image" w={50} />
       </Box>
       <Box>
-        <Image src="iconman.png" alt="Right Image" w={70}/>
+        <Image src="/iconman.png" alt="Right Image" w={70}/>
       </Box>
     </Flex>
   );
