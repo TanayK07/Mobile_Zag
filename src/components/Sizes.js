@@ -26,7 +26,7 @@ const ProductSize = () => {
   return (
     <>
       <Box ml={4} mt={3} mb={1}>
-        <Text fontSize="lg" mb={-1}>
+        <Text fontSize={"1rem"} mb={-1}>
           Size
         </Text>
         <HStack spacing={0} mt={-1}>

@@ -21,8 +21,7 @@ const Card1 = ({ image, title, description, code }) => {
         color="#000000"
       >
         <Text
-          fontFamily="Poppins"
-          fontWeight={800}
+          fontFamily="PoppinsBold"
           fontSize="25px"
           lineHeight="150%"
         >
@@ -31,9 +30,8 @@ const Card1 = ({ image, title, description, code }) => {
         <Text
           mb={2}
           fontFamily="Poppins"
-          fontWeight={400}
-          fontSize="16px"
-          lineHeight="19.5px"
+         
+          fontSize="1rem"
         >
           {description}
         </Text>

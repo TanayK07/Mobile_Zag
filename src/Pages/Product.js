@@ -64,7 +64,7 @@ const ProductPage = () => {
         justifyContent="center"
       >
         <Image src="bagicon.png" alt="Logo" width={3} height={3.5} mr={5} />
-        <Text color="white" fontWeight={600} fontSize="1rem" mr={15}>
+        <Text color="white" fontFamily={"PoppinsSemi-Bold"} fontSize="1rem" mr={15}>
           Buy Now
         </Text>
       </Button>
@@ -79,7 +79,7 @@ const ProductPage = () => {
         <Image src="lady.png" alt="Product Image" width={375} height={430} />
 
         {/* Logos */}
-        <HStack position="absolute" top={0} left={0} right={0} spacing={0} justifyContent="space-between" ml={2} mt={2} mr={2}>
+        <HStack position="absolute" top={0} left={0} right={0} spacing={0} justifyContent="space-between" ml={5} mt={10} mr={5}>
           {/* Logo Top Left */}
           <Image src="arrow.png" alt="Logo 1" width={35} height={35} />
           {/* Logo Top Right */}
@@ -87,7 +87,7 @@ const ProductPage = () => {
         </HStack>
 
         {/* Logo Bottom Right */}
-        <Image src="love.png" alt="Logo 3" position="absolute" bottom={2} right={2} width={30} height={30} />
+        <Image src="love.png" alt="Logo 3" position="absolute" bottom={5} right={5} width={30} height={30} />
 
         {/* Logo Bottom Center */}
         <Image src="dots.png" alt="Logo 4" position="absolute" bottom={5} left="50%" transform="translateX(-50%)" width={49} height={15} />
@@ -97,7 +97,7 @@ const ProductPage = () => {
           <HStack justifyContent="space-between" p={1}>
             <Box p={1}>
               {/* Stacked Text */}
-              <Text fontWeight={600} fontSize="18/16rem">Roller Rabbit</Text>
+              <Text fontFamily={"PoppinsBold"} fontSize="18/16rem">Roller Rabbit</Text>
               <Text fontWeight={400} color="#666666" fontSize="0.6875rem">Vade Oller Dress</Text>
               <HStack spacing={1}>
                 {[...Array(5)].map((_, index) => (

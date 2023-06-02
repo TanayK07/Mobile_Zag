@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, Text, Flex, Input, Spinner, HStack } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle,faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -94,9 +94,10 @@ const PaymentComponent = () => {
               />
             </Flex>
             <Flex direction="column" align="flex-start">
-              <Text fontSize={4} fontWeight={700} mb={1}>
-                CVV
-              </Text>
+                <HStack mb={1}>
+              <Text fontSize={4} fontWeight={700} >
+Security Code              </Text>
+<FontAwesomeIcon  fontSize={"0.7rem"} icon={faCircleQuestion} style={{color: "#7e797c",}} /></HStack>
               <Input
                 placeholder="CVV"
                 value={cvv}
