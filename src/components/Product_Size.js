@@ -26,10 +26,10 @@ const CircleButton = ({ children, onClick, selected }) => (
 
   return (
 <Box>
-<Text ml={5} mt={5}>
+<Text ml={2} mt={1} fontWeight={600} fontSize={"1rem"}>
   Size
 </Text>
-<HStack spacing={2} mt={5}ml={5}>
+<HStack spacing={2} mt={4}ml={5}>
   <CircleButton onClick={() => handleSizeClick('S')} selected={selectedSize === 'S'}>
     S
   </CircleButton>

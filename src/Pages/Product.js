@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Box, Button, Input, Text, Image, Flex, HStack, VStack, Link } from '@chakra-ui/react';
-import { useHistory } from 'react-router-dom';
+import { Box, Button, Input, Text, Image, Flex, HStack, VStack} from '@chakra-ui/react';
+import { Link} from 'react-router-dom';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useNumberInput } from '@chakra-ui/react';
+import ProductSize from '../components/Product_Size';
 
 const ProductPage = () => {
-  const [selectedSize, setSelectedSize] = useState(null);
   const [quantity, setQuantity] = useState(1);
 
   const HookUsage = () => {
@@ -42,23 +44,34 @@ const ProductPage = () => {
     );
   };
 
-  const handleSizeClick = (size) => {
-    setSelectedSize(size);
-  };
-
   const calculateTotalPrice = () => {
     const basePrice = 198.5;
     return (quantity * basePrice).toFixed(2);
   };
 
   const HandleBuyNow = () => {
-    // const history = useHistory();
-    // Redirect to the "payments" page
-    <Link to="/payments" />;
-    // history.push('/payments');
+    return (
+      <Button
+        as={Link}
+        to="/payments"
+        width={200}
+        height={50}
+        background="black"
+        borderRadius={30}
+        color="white"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Image src="bagicon.png" alt="Logo" width={3} height={3.5} mr={5} />
+        <Text color="white" fontWeight={600} fontSize="1rem" mr={15}>
+          Buy Now
+        </Text>
+      </Button>
+    );
   };
   
-
+  
   return (
     <Flex justifyContent="center" alignItems="center" h={430} bg="gray.200">
       <Box position="relative" width={375} height={430}>
@@ -84,65 +97,53 @@ const ProductPage = () => {
           <HStack justifyContent="space-between" p={1}>
             <Box p={1}>
               {/* Stacked Text */}
-              <Text>Roller Rabbit</Text>
-              <Text>Vade Oller Dress</Text>
-              <Text>(320 views)</Text>
+              <Text fontWeight={600} fontSize="18/16rem">Roller Rabbit</Text>
+              <Text fontWeight={400} color="#666666" fontSize="0.6875rem">Vade Oller Dress</Text>
+              <HStack spacing={1}>
+                {[...Array(5)].map((_, index) => (
+                  <FontAwesomeIcon key={index} icon={faStar} style={{ color: "#ffab07", width: "11px", height: "11px" }} />
+                ))}
+                <Text color="black" fontWeight={400} fontSize="0.6875rem">(320 reviews)</Text>
+              </HStack>
             </Box>
             <Flex justifyContent="flex-end" flexDirection="column">
               {/* Stacked Text */}
               <HookUsage />
-              <Text justifyContent="flex-end">Text 5</Text>
+              <Text
+                justifyContent="flex-end"
+                fontSize="11px"
+                fontWeight={600}
+                lineHeight="17/16rem"
+                textAlign="right"
+              >
+                Available in Stock
+              </Text>
             </Flex>
           </HStack>
-          <Box ml={4} mt={5} mb={4}> {/* Updated the margin-bottom value */}
-            <Text fontSize="lg">Size</Text>
-            <HStack spacing={2} mt={2}>
-              <CircleButton onClick={() => handleSizeClick('S')} selected={selectedSize === 'S'}>
-                S
-              </CircleButton>
-              <CircleButton onClick={() => handleSizeClick('M')} selected={selectedSize === 'M'}>
-                M
-              </CircleButton>
-              <CircleButton onClick={() => handleSizeClick('L')} selected={selectedSize === 'L'}>
-                L
-              </CircleButton>
-              <CircleButton onClick={() => handleSizeClick('XL')} selected={selectedSize === 'XL'}>
-                XL
-              </CircleButton>
-              <CircleButton onClick={() => handleSizeClick('XXL')} selected={selectedSize === 'XXL'}>
-                XXL
-              </CircleButton>
-            </HStack>
-          </Box>
 
-          <Flex flexDirection={'column'}>
-            <Text fontSize="lg">Color</Text>
-            <Text fontSize="0.6875rem" maxW={350}>
+          <ProductSize />
+
+          <Flex flexDirection="column" mt={5}>
+            <Text fontSize="1rem" fontWeight={600} mb={15} lineHeight="150%" color="black">
+              Description
+            </Text>
+            <Text fontSize="0.6875rem" maxW={350} color="#666666" mb={1}>
               Get a little lift from these Sam Edelman sandals featuring ruched straps and leather lace-up ties,
               while a braided jute sole makes a fresh statement for summer.
             </Text>
 
-            <HStack mt={3} justifyContent={'space-between'}>
-              <VStack spacing={1}>
-                <Text color="#AAAAAA" fontSize={"0.5625rem"}>Total Price</Text>
-                <Text color="#000000" fontWeight={700} ml={4} fontSize={"18/16rem"}>
+            <HStack mt={3} justifyContent="space-between">
+              <VStack spacing={0}>
+                <Text color="#AAAAAA" fontSize="0.5625rem">
+                  Total Price
+                </Text>
+                <Text color="#000000" fontWeight={700} ml={4} fontSize="18/16rem">
                   ${calculateTotalPrice()}
                 </Text>
               </VStack>
-              <Button
-                width={200}
-                height={50}
-                background="black"
-                borderRadius={30}
-                color="white"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                onClick={HandleBuyNow}
-              >
-                <Image src="bagicon.png" alt="Logo" width={3} height={3.5} mr={5} />
-                <Text color={"white"} fontWeight={600} fontSize={"1rem"} mr={15}>Buy Now</Text>
-              </Button>
+              
+            <HandleBuyNow />
+            
             </HStack>
           </Flex>
         </Box>
@@ -150,20 +151,5 @@ const ProductPage = () => {
     </Flex>
   );
 };
-
-const CircleButton = ({ children, onClick, selected }) => (
-  <Button
-    size="sm"
-    p={0}
-    width={8}
-    height={8}
-    borderRadius="50%"
-    bg={selected ? 'black' : 'transparent'}
-    color={selected ? 'white' : 'gray'}
-    onClick={onClick}
-  >
-    {children}
-  </Button>
-);
 
 export default ProductPage;
