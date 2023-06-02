@@ -1,96 +1,146 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Box, Button, Input, Flex, Text, FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/react';
+import { Box, Button, Text, Flex, Input, Spinner, HStack } from '@chakra-ui/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
+
 
 const PaymentComponent = () => {
   const [cardNumber, setCardNumber] = useState('');
   const [cardName, setCardName] = useState('');
-  const [expiryDate, setExpiryDate] = useState('');
+  const [expirationDate, setExpirationDate] = useState('');
   const [cvv, setCvv] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const history = useHistory();
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setIsSubmitted(true);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsProcessing(true);
 
-    if (cardNumber.length < 16 || cardName.trim() === '' || expiryDate.trim() === '' || cvv.length < 3) {
-      return;
-    }
-
-    setIsLoading(true);
-    // Simulate API request or payment processing
+    // Simulate payment processing for 3 seconds
     setTimeout(() => {
-      setIsLoading(false);
-      history.push('/payment-success'); // Redirect to the payment success page
-    }, 2000);
+      setIsProcessing(false);
+      setIsPaymentSuccessful(true);
+    }, 3000);
   };
 
-  const isCardNumberValid = cardNumber.length === 16 || !isSubmitted;
-  const isCardNameValid = cardName.trim() !== '' || !isSubmitted;
-  const isExpiryDateValid = expiryDate.trim() !== '' || !isSubmitted;
-  const isCvvValid = cvv.length === 3 || !isSubmitted;
+  const handleCardNumberChange = (e) => {
+    let value = e.target.value;
+    value = value.replace(/\s/g, ''); // Remove spaces from input
+    const formattedValue = value
+      .replace(/(\d{4})/g, '$1 ') // Add space after every 4 characters
+      .trim();
+    if (formattedValue.length <= 19) {
+      setCardNumber(formattedValue);
+    }
+  };
+
+  const handleExpirationDateChange = (e) => {
+    let value = e.target.value;
+    value = value.replace(/[^\d/]/g, ''); // Remove non-numeric and non-slash characters
+    if (value.length <= 5) {
+      if (value.length === 2 && !value.includes('/')) {
+        value = value.slice(0, 2) + '/' + value.slice(2);
+      }
+      setExpirationDate(value);
+    }
+  };
+
+  const handleCvvChange = (e) => {
+    let value = e.target.value;
+    value = value.replace(/[^\d]/g, ''); // Remove non-numeric characters
+    if (value.length <= 3) {
+      setCvv(value);
+    }
+  };
 
   return (
-    <Text>  df,s </Text>
-    // <Flex justifyContent="center" alignItems="center" height="100vh">
-    //   <Box width={375}>
-    //     <Box p={4}>
-    //       <form onSubmit={handleSubmit}>
-    //         <FormControl id="cardNumber" isInvalid={!isCardNumberValid} isRequired>
-    //           <FormLabel>Card Number</FormLabel>
-    //           <Input
-    //             type="text"
-    //             placeholder="Enter card number"
-    //             value={cardNumber}
-    //             onChange={(e) => setCardNumber(e.target.value)}
-    //           />
-    //           <FormErrorMessage>Card number must be 16 digits</FormErrorMessage>
-    //         </FormControl>
+    <Box>
+      <Flex align="center" justify="center" flexDirection="column" mt={5} p={5}>
+        <form onSubmit={handleSubmit}>
+          <Flex direction="column" align="flex-start" mb={2}>
+            <Text fontSize={4} fontWeight={700} ml={2} mb={1}>
+              Card Number
+            </Text>
+            <Input
+              placeholder="Enter Card Number"
+              value={cardNumber}
+              onChange={handleCardNumberChange}
+              required
 
-    //         <FormControl id="cardName" isInvalid={!isCardNameValid} isRequired mt={4}>
-    //           <FormLabel>Cardholder Name</FormLabel>
-    //           <Input
-    //             type="text"
-    //             placeholder="Enter cardholder name"
-    //             value={cardName}
-    //             onChange={(e) => setCardName(e.target.value)}
-    //           />
-    //           <FormErrorMessage>Cardholder name is required</FormErrorMessage>
-    //         </FormControl>
+            />
+          </Flex>
+          <Flex direction="column" align="flex-start" mb={2}>
+            <Text fontSize={4} fontWeight={700} ml={2} mb={1}>
+              Name on Card
+            </Text>
+            <Input
+              placeholder="Enter Name on Card"
+              value={cardName}
+              onChange={(e) => setCardName(e.target.value)}
+              required
+            />
+          </Flex>
+          <Flex spacing={2} mt={5} ml={2} justifyContent="space-between">
+            <Flex direction="column" align="flex-start">
+              <Text fontSize={4} fontWeight={700} mb={1}>
+                Expiration Date
+              </Text>
+              <Input
+                placeholder="MM/YY"
+                value={expirationDate}
+                onChange={handleExpirationDateChange}
+                required
+              />
+            </Flex>
+            <Flex direction="column" align="flex-start">
+              <Text fontSize={4} fontWeight={700} mb={1}>
+                CVV
+              </Text>
+              <Input
+                placeholder="CVV"
+                value={cvv}
+                onChange={handleCvvChange}
+                required
+              />
+            </Flex>
+          </Flex>
+          <Flex justify="center" mt={50}>
+            {isProcessing ? (
+              <Flex direction="column" align="center">
+                <Spinner size="lg" color={"grey"} mb={2} />
+                <Text fontSize={20} fontWeight={700} p={2} mt={1}>
+                  Payment is processing
+                </Text>
+                <Text fontSize={"0.6rem"}>Please wait, do not close the screen.</Text>
+              </Flex>
+            ) : isPaymentSuccessful ? (
+              <Flex direction="column" align="center">
+                <FontAwesomeIcon icon={faCheckCircle} mb={10} style={{ color: '#0d9b03' }} size={'2x'} />
+                <Text fontSize={20} fontWeight={700} p={2} mt={1}>
+                  Payment Received!
+                </Text>
+                <Text fontSize={"0.6rem"}>Your order is now on the way.</Text>
+                <Text fontSize={"0.6rem"}>Please check your email for receipt</Text>
 
-    //         <Flex mt={4}>
-    //           <FormControl id="expiryDate" isInvalid={!isExpiryDateValid} isRequired mr={2}>
-    //             <FormLabel>Expiry Date</FormLabel>
-    //             <Input
-    //               type="text"
-    //               placeholder="MM/YY"
-    //               value={expiryDate}
-    //               onChange={(e) => setExpiryDate(e.target.value)}
-    //             />
-    //             <FormErrorMessage>Expiry date is required</FormErrorMessage>
-    //           </FormControl>
 
-    //           <FormControl id="cvv" isInvalid={!isCvvValid} isRequired>
-    //             <FormLabel>CVV</FormLabel>
-    //             <Input
-    //               type="text"
-    //               placeholder="Enter CVV"
-    //               value={cvv}
-    //               onChange={(e) => setCvv(e.target.value)}
-    //             />
-    //             <FormErrorMessage>CVV must be 3 digits</FormErrorMessage>
-    //           </FormControl>
-    //         </Flex>
-
-    //         <Button type="submit" colorScheme="blue" mt={4} isLoading={isLoading} isDisabled={isLoading}>
-    //           {isLoading ? 'Processing...' : 'Pay Now'}
-    //         </Button>
-    //       </form>
-    //     </Box>
-    //   </Box>
-    // </Flex>
+              </Flex>
+            ) : (
+                <Button type="submit" w="100%" colorScheme="pink" h="45px" position="relative">
+                <Box position="absolute" top="50%" transform="translateY(-50%)" marginRight="5px" >
+                    <HStack> <FontAwesomeIcon icon={faLock} style={{ color: "#ffffff" }} />
+          <Text fontSize={"0.8rem"}>Pay now</Text> </HStack>
+                        
+                </Box>
+                {/* Pay Now */}
+              </Button>
+              
+              
+            )}
+          </Flex>
+        </form>
+      </Flex>
+    </Box>
   );
 };
 

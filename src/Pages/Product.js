@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Input, Text, Image, Flex, HStack, VStack } from '@chakra-ui/react';
+import { Box, Button, Input, Text, Image, Flex, HStack, VStack, Link } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
 
 import { useNumberInput } from '@chakra-ui/react';
@@ -52,9 +52,10 @@ const ProductPage = () => {
   };
 
   const HandleBuyNow = () => {
-    const history = useHistory();
+    // const history = useHistory();
     // Redirect to the "payments" page
-    history.push('/payments');
+    <Link to="/payments" />;
+    // history.push('/payments');
   };
   
 
