@@ -3,8 +3,23 @@ import { Box, Image, Text, VStack, InputGroup, InputLeftElement, Input, InputRig
 import { SearchIcon } from '@chakra-ui/icons';
 import Navbar from '../components/Navbar';
 import BottomNav from '../components/bottomnav';
+import Card1 from '../components/card1';
+import Card2 from '../components/card2';
 
 const Home = () => {
+    const card1Data = {
+        image: "bag1.png",
+        title: "50% Off",
+        description: "On everything today",
+        code: "With code: FSCREATION",
+      };
+      const card2Data = {
+        image: "watch.png",
+        title: "70% Off",
+        description: "On everything today",
+        code: "With code: FSCREATION",
+      };
+
   return (
     <Box>
       <Navbar />
@@ -27,9 +42,9 @@ const Home = () => {
 
       <Flex p={4} overflowX="auto">
         <HStack spacing={4}>
-          <Box w="260px" h="160px" bg="gray.200" borderRadius="md" />
-          <Box w="260px" h="160px" bg="gray.200" borderRadius="md" />
-          <Box w="260px" h="160px" bg="gray.200" borderRadius="md" />
+        <Card1{...card1Data}/>
+        <Card1{...card2Data}/>
+
           {/* Add more card components here */}
         </HStack>
       </Flex>
@@ -41,9 +56,10 @@ const Home = () => {
 
       <Flex p={4} overflowX="auto">
         <HStack spacing={4}>
-          <Box w="155px" h="240px" bg="gray.200" borderRadius="md" />
-          <Box w="155px" h="240px" bg="gray.200" borderRadius="md" />
-          <Box w="155px" h="240px" bg="gray.200" borderRadius="md" />
+            <Card2/>
+            <Card2/>
+            <Card2/>
+            
           {/* Add more card components here */}
         </HStack>
       </Flex>
