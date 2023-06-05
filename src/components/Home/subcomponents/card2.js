@@ -44,7 +44,7 @@ const Card2 = ({ image, title, description, price }) => {
         left="0"
         width="100%"
         textAlign="center"
-        fontFamily="PoppinsSemi-Bold"
+        fontFamily="PoppinsBold"
         fontSize="0.725rem"
         lineHeight="150%"
       >

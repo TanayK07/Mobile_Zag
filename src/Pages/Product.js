@@ -6,10 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useNumberInput } from '@chakra-ui/react';
 import ProductSize from '../components/Product/Product_Size';
+import { useNavigate } from 'react-router-dom';
 
 const ProductPage = () => {
   // State for the quantity of the product
   const [quantity, setQuantity] = useState(1);
+
+  const navigate = useNavigate();
 
   // Component for number input with increment and decrement buttons
   const HookUsage = () => {
@@ -82,9 +85,21 @@ const ProductPage = () => {
         <Image src="/lady.png" alt="Product Image" width={375} height={430} />
 
         {/* Logos */}
-        <HStack position="absolute" top={0} left={0} right={0} spacing={0} justifyContent="space-between" ml={5} mt={10} mr={5}>
+        <HStack
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          spacing={0}
+          justifyContent="space-between"
+          mt={10}
+          pr={5}
+          pl={4} // Add this line
+        >
           {/* Logo Top Left */}
-          <Image src="/arrow.png" alt="Logo 1" width={35} height={35} />
+          <Button style={{ border: 'none', background: 'none', cursor: 'pointer' }}>
+            <Image onClick={() => navigate(-1)} src="/arrow.png" alt="Logo 1" width={35} height={35} />
+          </Button>
           {/* Logo Top Right */}
           <Image src="/cart1.png" alt="Logo 2" width={30} height={30} />
         </HStack>
@@ -141,7 +156,7 @@ const ProductPage = () => {
                 <Text color="#AAAAAA" fontSize="0.5625rem">
                   Total Price
                 </Text>
-                <Text color="#000000" fontWeight={700} ml={4} fontSize="18/16rem">
+                <Text color="#000000" fontFamily={"PoppinsBold"} ml={4} fontSize="18/16rem">
                   ${calculateTotalPrice()}
                 </Text>
               </VStack>

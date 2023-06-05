@@ -11,9 +11,9 @@ const SearchBarHome = () => {
       </Box>
 
       <VStack spacing={2} p={2} alignItems="center">
-        <InputGroup w={280}>
-          <InputLeftElement pointerEvents="none" children={<SearchIcon color="gray.300" />} />
-          <Input placeholder="Search" />
+        <InputGroup w={280} >
+          <InputLeftElement pointerEvents="none" children={<Image src="searchicon.png" w={15} />} />
+          <Input  borderRadius={30} fontFamily={"Poppins"} fontSize={"0.8125rem"} placeholder="Search..." />
           <InputRightAddon bg="white" p={1}>
             <Image src="/lelvel.png" alt="Logo" w={50} ml={5} />
           </InputRightAddon>

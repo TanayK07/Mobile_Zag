@@ -18,77 +18,77 @@ const Middlecardshome = () => {
       title: "70% Off",
       description: "On everything today",
       code: "With code: FSCREATION",
-      link: null, 
+      link: "/product", 
     },
     {
       image: "/watch.png",
       title: "70% Off",
       description: "On everything today",
       code: "With code: FSCREATION",
-      link: null, 
+      link: "/product", 
     },
     {
       image: "/watch.png",
       title: "70% Off",
       description: "On everything today",
       code: "With code: FSCREATION",
-      link: null, 
+      link: "/product", 
     },
     {
       image: "/watch.png",
       title: "70% Off",
       description: "On everything today",
       code: "With code: FSCREATION",
-      link: null, 
+      link: "/product", 
     },
     {
       image: "/watch.png",
       title: "70% Off",
       description: "On everything today",
       code: "With code: FSCREATION",
-      link: null, 
+      link: "/product", 
     },
     {
       image: "/watch.png",
       title: "70% Off",
       description: "On everything today",
       code: "With code: FSCREATION",
-      link: null, 
+      link: "/product", 
     },
     {
       image: "/watch.png",
       title: "70% Off",
       description: "On everything today",
       code: "With code: FSCREATION",
-      link: null, 
+      link: "/product", 
     },
     {
       image: "/watch.png",
       title: "70% Off",
       description: "On everything today",
       code: "With code: FSCREATION",
-      link: null, 
+      link: "/product", 
     },
     {
       image: "/watch.png",
       title: "70% Off",
       description: "On everything today",
       code: "With code: FSCREATION",
-      link: null, 
+      link: "/product", 
     },
     {
       image: "/watch.png",
       title: "70% Off",
       description: "On everything today",
       code: "With code: FSCREATION",
-      link: null, 
+      link: "/product", 
     },
     {
       image: "/watch.png",
       title: "70% Off",
       description: "On everything today",
       code: "With code: FSCREATION",
-      link: null, 
+      link: "/product", 
     },
 
     // Add more card data objects as needed
@@ -100,96 +100,128 @@ const Middlecardshome = () => {
       title: "The Marc Jacobs",
       description: "Traveller Tote",
       price: "$195.00",
+      link: "/product", 
+
     },
     {
       image: "/shoes.png",
       title: "Axel Arigato",
       description: "Clean 90 Triple Sneakers",
       price: "$245.00",
+      link: "/product", 
+
     },
     {
       image: "/bag2.png",
       title: "The Marc Jacobs",
       description: "Traveller Tote",
       price: "$195.00",
+      link: "/product", 
+
     },
     {
       image: "/shoes.png",
       title: "Axel Arigato",
       description: "Clean 90 Triple Sneakers",
       price: "$245.00",
+      link: "/product", 
+
     },
     {
       image: "/bag2.png",
       title: "The Marc Jacobs",
       description: "Traveller Tote",
       price: "$195.00",
+      link: "/product", 
+
     },
     {
       image: "/shoes.png",
       title: "Axel Arigato",
       description: "Clean 90 Triple Sneakers",
       price: "$245.00",
+      link: "/product", 
+
     },
     {
       image: "/bag2.png",
       title: "The Marc Jacobs",
       description: "Traveller Tote",
       price: "$195.00",
+      link: "/product", 
+
     },
     {
       image: "/shoes.png",
       title: "Axel Arigato",
       description: "Clean 90 Triple Sneakers",
       price: "$245.00",
+      link: "/product", 
+
     },
     {
       image: "/bag2.png",
       title: "The Marc Jacobs",
       description: "Traveller Tote",
       price: "$195.00",
+      link: "/product", 
+
     },
     {
       image: "/shoes.png",
       title: "Axel Arigato",
       description: "Clean 90 Triple Sneakers",
       price: "$245.00",
+      link: "/product", 
+
     },
     {
       image: "/bag2.png",
       title: "The Marc Jacobs",
       description: "Traveller Tote",
       price: "$195.00",
+      link: "/product", 
+
     },
     {
       image: "/shoes.png",
       title: "Axel Arigato",
       description: "Clean 90 Triple Sneakers",
       price: "$245.00",
+      link: "/product", 
+
     },
     {
       image: "/bag2.png",
       title: "The Marc Jacobs",
       description: "Traveller Tote",
       price: "$195.00",
+      link: "/product", 
+
     },
     {
       image: "/shoes.png",
       title: "Axel Arigato",
       description: "Clean 90 Triple Sneakers",
       price: "$245.00",
+      link: "/product", 
+
     },
     {
       image: "/bag2.png",
       title: "The Marc Jacobs",
       description: "Traveller Tote",
       price: "$195.00",
+      link: "/product", 
+
     },
     {
       image: "/shoes.png",
       title: "Axel Arigato",
       description: "Clean 90 Triple Sneakers",
       price: "$245.00",
+      link: "/product", 
+
     },
     
     // Add more new arrivals data objects as needed
@@ -225,7 +257,10 @@ const Middlecardshome = () => {
       <Flex px={4} py={2} overflowX="auto">
         <HStack spacing={4}>
           {newArrivalsData.map((data, index) => (
+                          <Link to={data.link} key={index}>
+
             <Card2 key={index} {...data} />
+            </Link>
           ))}
         </HStack>
       </Flex>

@@ -16,6 +16,8 @@ const ProductSize = () => {
       bg={selected ? 'black' : 'transparent'}
       color={selected ? 'white' : 'gray'}
       onClick={onClick}
+      borderWidth={1.2}
+      borderColor={selected ? 'black' : '#DDDDDD'}
     >
       {children}
     </Button>
