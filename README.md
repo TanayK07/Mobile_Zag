@@ -1,6 +1,6 @@
 
 # React Shopping App
-
+Deployed at https://mobileshoppingsample.netlify.app/
 
 ## Switch to Branch master 
 ## Prerequisites
